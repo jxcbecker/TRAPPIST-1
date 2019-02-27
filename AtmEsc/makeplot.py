@@ -7,6 +7,9 @@ try:
 except:
     print('Cannot import vplot. Please install vplot.')
 
+# make the plot settings: 
+xaxscale = 'linear' # 'linear' or 'log'
+
 # Check correct number of arguments
 if (len(sys.argv) != 2):
     print('ERROR: Incorrect number of arguments.')
@@ -38,7 +41,7 @@ axes[0,0].set_xlim(1e6,time.max())
 axes[0,0].set_ylim(1e-4,0.06)
 axes[0,0].set_xlabel("Time [yr]")
 axes[0,0].set_ylabel(r"Luminosity (L$_\odot$)")
-axes[0,0].set_xscale('log')
+axes[0,0].set_xscale(xaxscale)
 axes[0,0].set_yscale('log')
 
 ## Top Right: XUV Luminosity ##
@@ -49,7 +52,7 @@ axes[0,1].set_xlim(1e6,time.max())
 axes[0,1].set_ylim(1e-8,1.1*output.star.LXUVTot.max())
 axes[0,1].set_xlabel("Time [yr]")
 axes[0,1].set_ylabel(r"L$_{XUV}$ (L$_\odot$)")
-axes[0,1].set_xscale('log')
+axes[0,1].set_xscale(xaxscale)
 axes[0,1].set_yscale('log')
 
 ## Middle Left: Effective Temperature ##
@@ -60,7 +63,7 @@ axes[1,0].set_xlim(1e6,time.max())
 axes[1,0].set_ylim(0.9*output.star.Temperature.min(),1.1*output.star.Temperature.max())
 axes[1,0].set_xlabel("Time [yr]")
 axes[1,0].set_ylabel(r"T$_{eff}$ (K)")
-axes[1,0].set_xscale('log')
+axes[1,0].set_xscale(xaxscale)
 
 ## Middle Right: Habitable Zone ##
 axes[1,1].plot(time, output.star.HZLimRecVenus,'k',linestyle='dashed')
@@ -73,7 +76,7 @@ axes[1,1].set_xlim(1e6,time.max())
 axes[1,1].set_ylim(0,0.5)
 axes[1,1].set_xlabel("Time [yr]")
 axes[1,1].set_ylabel("Habitable Zone (AU)")
-axes[1,1].set_xscale('log')
+axes[1,1].set_xscale(xaxscale)
 
 ## Bottom Left: Surface water ##
 axes[2,0].plot(time, output.b.SurfWaterMass,'k',label='b')
@@ -87,7 +90,7 @@ axes[2,0].set_xlim(1e6,time.max())
 axes[2,0].set_ylim(0,11)
 axes[2,0].set_xlabel("Time [yr]")
 axes[2,0].set_ylabel("Surface Water (TO)")
-axes[2,0].set_xscale('log')
+axes[2,0].set_xscale(xaxscale)
 axes[2,0].legend(loc='best')
 
 ## Bottom Right: Abiotic Oxygen ##
@@ -102,7 +105,7 @@ axes[2,1].set_xlim(1e6,time.max())
 axes[2,1].set_ylim(0,2000)
 axes[2,1].set_xlabel("Time [yr]")
 axes[2,1].set_ylabel("Atm. Oxygen (bar)")
-axes[2,1].set_xscale('log')
+axes[2,1].set_xscale(xaxscale)
 
 # Final formating
 fig.tight_layout()
